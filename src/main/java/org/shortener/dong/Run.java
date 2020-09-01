@@ -1,13 +1,11 @@
-package org.dong.demo;
+package org.shortener.dong;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CourseApiApp {
-
+public class Run {
 	public static void main(String[] args) {
-		SpringApplication.run(CourseApiApp.class, args);
+		SpringApplication.run(Run.class, args);
 	}
-
 }
