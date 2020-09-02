@@ -1,19 +1,32 @@
 package org.shortener.dong.model;
 
 public class EncodedUrl {
-	private String url;
+	private String hostname;
+	private String endpoint;
 	
-	public EncodedUrl(String url) {
-		this.setUrl(url);
+	public EncodedUrl(String hostname, String endpoint) {
+		this.setHostname(hostname);
+		this.setEndpoint(endpoint);
 	}
 
-	public String getUrl() {
-		return url;
+	public String getEndpoint() {
+		return endpoint;
 	}
 
-	public void setUrl(String url) {
-		this.url = url;
+	public void setEndpoint(String endpoint) {
+		this.endpoint = endpoint;
 	}
 	
+	public String getHostname() {
+		return hostname;
+	}
+
+	public void setHostname(String hostname) {
+		this.hostname = hostname;
+	}
 	
+	@Override
+	public String toString() {
+		return hostname + getEndpoint();
+	}
 }

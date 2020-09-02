@@ -4,8 +4,11 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -14,17 +17,28 @@ import java.time.LocalDateTime;
 public class Url implements Serializable {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@Column(name = "created_date")
+	@CreationTimestamp
 	private LocalDateTime createdDate;
 	
-	@Column(name = "orignal_url")
+	@Column(name = "original_url", nullable = false)
 	private String originalUrl;
 	
+	public Url() {
+		
+	}
+	
 	public Url(String originalUrl) {
-		this.originalUrl = originalUrl;
+		setOriginalUrl(originalUrl);
+	}
+	
+	public Url(Long id, String originalUrl, LocalDateTime createdDate) {
+		setId(id);
+		setOriginalUrl(originalUrl);
+		setCreatedDate(createdDate);
 	}
 	
 	public Long getId() {

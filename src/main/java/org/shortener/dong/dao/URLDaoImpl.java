@@ -1,26 +1,27 @@
 package org.shortener.dong.dao;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.shortener.dong.model.*;
-import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
-@Service
+@Repository
 public class URLDaoImpl implements Dao<Url> {
 	
-	private Session session;
+	@Autowired
+	private SessionFactory sessionFactory;
 	
-	
-	public URLDaoImpl(Session session) {
-		this.setFactory(session);
-	}
+	public URLDaoImpl() {
+		
+	} 
 	
 	@Override
-	public Url find(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Url find(Object id) {
+		return getSession().find(Url.class, id);
 	}
 
 	@Override
@@ -36,8 +37,8 @@ public class URLDaoImpl implements Dao<Url> {
 	}
 
 	@Override
-	public Url add(Url object) {
-		return (Url)getSession().save(object);
+	public Serializable add(Url object) {
+		return getSession().save(object);
 		
 	}
 	
@@ -48,10 +49,6 @@ public class URLDaoImpl implements Dao<Url> {
 	}
 
 	public Session getSession() {
-		return session;
-	}
-
-	public void setFactory(Session session) {
-		this.session = session;
+		return sessionFactory.openSession();
 	}
 }
