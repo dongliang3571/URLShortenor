@@ -26,6 +26,11 @@ public class UrlController {
 	@Autowired
 	private URLServiceImpl service;
 	
+	@RequestMapping(method = RequestMethod.GET, path = "/ping")
+	public String ping() {
+		return "ok 200";
+	}
+	
 	@CrossOrigin(origins = "*")
 	@RequestMapping(method = RequestMethod.POST, path = "/addUrl", headers = "Accept=application/json")
 	public UrlForResponse<EncodedUrl> addUrl(@RequestBody UrlForRequest url) {
