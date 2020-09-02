@@ -3,7 +3,7 @@
   <groupId>URLShortener</groupId>
   <artifactId>URLShortener</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <packaging>war</packaging>
+  <packaging>jar</packaging>
   <build>
     <sourceDirectory>src/main/java</sourceDirectory>
     <resources>
