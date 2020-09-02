@@ -3,11 +3,12 @@
   <groupId>URLShortener</groupId>
   <artifactId>URLShortener</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
   <build>
     <sourceDirectory>src/main/java</sourceDirectory>
     <resources>
       <resource>
-        <directory>src/main/java/resources</directory>
+        <directory>src/main/resources</directory>
         <excludes>
           <exclude>**/*.java</exclude>
         </excludes>
