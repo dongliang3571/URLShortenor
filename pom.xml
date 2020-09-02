@@ -3,7 +3,6 @@
   <groupId>URLShortener</groupId>
   <artifactId>URLShortener</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <packaging>jar</packaging>
   <build>
     <sourceDirectory>src/main/java</sourceDirectory>
     <resources>
@@ -34,11 +33,6 @@
                 </execution>
             </executions>
         </plugin>
-        <plugin>
-	        <groupId>com.heroku.sdk</groupId>
-	        <artifactId>heroku-maven-plugin</artifactId>
-	        <version>3.0.3</version>
-      </plugin>
     </plugins>
   </build>
   
