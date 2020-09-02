@@ -21,7 +21,7 @@ import java.util.Base64;
 @RestController
 public class UrlController {
 	
-	private static String hostname = "http://localhost:8080/";
+	private static String hostname = "https://safe-bastion-92618.herokuapp.com/";
 	
 	@Autowired
 	private URLServiceImpl service;
