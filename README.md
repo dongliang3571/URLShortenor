@@ -1,5 +1,5 @@
 ### To Run
 
 ```bash
-./run
+./run.sh
 ```
