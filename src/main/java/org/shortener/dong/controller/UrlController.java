@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.shortener.dong.model.*;
 import org.shortener.dong.service.*;
@@ -18,21 +19,28 @@ import java.net.URI;
 import java.util.Base64;
 
 
-@RestController
+@Controller
 public class UrlController {
 	
-	private static String hostname = "https://safe-bastion-92618.herokuapp.com/";
+	private static String hostname = "https://urlshortenor.herokuapp.com/";
 	
 	@Autowired
 	private URLServiceImpl service;
 	
+	@RequestMapping("/")
+	public String index() {
+		return "index";
+	}
+	
 	@RequestMapping(method = RequestMethod.GET, path = "/ping")
+	@ResponseBody
 	public String ping() {
 		return "ok 200";
 	}
 	
 	@CrossOrigin(origins = "*")
 	@RequestMapping(method = RequestMethod.POST, path = "/addUrl", headers = "Accept=application/json")
+	@ResponseBody
 	public UrlForResponse<EncodedUrl> addUrl(@RequestBody UrlForRequest url) {
 		System.out.println("entering addUrl");
 		System.out.println("URL is: " + url.getUrl());
@@ -56,7 +64,7 @@ public class UrlController {
 		return resp;
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, path = "/{endpoint}")
+	@RequestMapping(method = RequestMethod.GET, path = "/{endpoint:.+}")
 	public ResponseEntity<Void> index(@PathVariable String endpoint) {
 		System.out.println("incoming traffic");
 		System.out.println(endpoint);
@@ -64,7 +72,7 @@ public class UrlController {
 		String pattern = "^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)?$";
 		if (!endpoint.matches(pattern)) {
 			return ResponseEntity.status(HttpStatus.FOUND)
-			                     .location(URI.create("/addUrl"))
+			                     .location(URI.create("/"))
 						         .build();
 		}
 		
@@ -82,7 +90,7 @@ public class UrlController {
 		
 		if (originalUrl == null) {
 			return ResponseEntity.status(HttpStatus.FOUND)
-                                 .location(URI.create("/addUrl"))
+                                 .location(URI.create("/"))
 	        			         .build();
 		}
 		
