@@ -24,7 +24,7 @@
 <script>
 	$("#submit").click(function() {
 		$.ajax({
-			url: "http://localhost:8080/addUrl",
+			url: "/addUrl",
 			dataType: 'json',
 			type: 'POST',
 			contentType: 'application/json',
